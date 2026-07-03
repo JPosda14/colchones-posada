@@ -9,8 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        verde: "#2D6A4F",
+        "verde-claro": "#52B788",
+        "verde-muy-claro": "#D8F3DC",
+        crema: "#FAF7F2",
+        "crema-oscura": "#F0EBE1",
+        texto: "#1A1A1A",
+        "texto-suave": "#6B6B6B",
+        acento: "#E76F51",
+        whatsapp: "#25D366",
+      },
+      fontFamily: {
+        heading: ["Playfair Display", "serif"],
+        body: ["DM Sans", "sans-serif"],
       },
     },
   },

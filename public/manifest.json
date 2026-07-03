@@ -1,0 +1,9 @@
+{
+  "name": "Colchones Posada",
+  "short_name": "Colchones Posada",
+  "description": "Fábrica de colchones en Armenia, Quindío. Más de 15 años fabricando su descanso.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#2D6A4F"
+}
