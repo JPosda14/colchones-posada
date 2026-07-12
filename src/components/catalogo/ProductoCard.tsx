@@ -79,7 +79,7 @@ export function ProductoCard({ producto }: ProductoCardProps) {
           </span>
         </div>
 
-        <span className="mt-1 text-sm font-medium text-verde-claro transition-colors group-hover:text-verde">
+        <span className="mt-1 text-sm font-semibold text-verde transition-colors group-hover:text-verde-oscuro">
           Ver detalles →
         </span>
       </div>

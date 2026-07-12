@@ -2,21 +2,44 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui";
+import { productos } from "@/lib/productos";
+import type { ProductoMedida } from "@/types";
+
+const PRODUCTOS_SIN_MEDIDA = [
+  "Almohada Sencilla",
+  "Almohada Normal",
+  "Almohada Acolchada",
+  "Almohada Memory Foam",
+];
 
 export default function CotizarPage() {
   const [formData, setFormData] = useState({
     nombre: "",
     municipio: "",
     telefono: "",
+    peso: "",
+    preferencia_dureza: "",
     producto_interes: "",
     medida_interes: "",
     comentario: "",
   });
   const [enviado, setEnviado] = useState(false);
 
+  const productoActual = productos.find((p) => p.nombre === formData.producto_interes);
+  const medidasDisponibles: ProductoMedida[] = productoActual
+    ? productoActual.medidas.filter((m) => m.disponible)
+    : [];
+
+  const mostrarMedida = formData.producto_interes && !PRODUCTOS_SIN_MEDIDA.includes(formData.producto_interes);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mensaje = `Hola, soy ${formData.nombre}. Vivo en ${formData.municipio}. Me interesa cotizar ${formData.producto_interes}${formData.medida_interes ? ` en medida ${formData.medida_interes}` : ""}. ${formData.comentario ? `Comentario: ${formData.comentario}` : ""}. Mi teléfono es ${formData.telefono}.`;
+    let mensaje = `Hola, soy ${formData.nombre}. Vivo en ${formData.municipio}. Me interesa cotizar ${formData.producto_interes}`;
+    if (formData.medida_interes) mensaje += ` en medida ${formData.medida_interes}`;
+    if (formData.peso) mensaje += `. Peso: ${formData.peso} kg`;
+    if (formData.preferencia_dureza) mensaje += `. Preferencia: ${formData.preferencia_dureza}`;
+    if (formData.comentario) mensaje += `. Comentario: ${formData.comentario}`;
+    mensaje += `. Mi teléfono es ${formData.telefono}.`;
     window.open(
       `https://wa.me/573112084159?text=${encodeURIComponent(mensaje)}`,
       "_blank"
@@ -40,6 +63,8 @@ export default function CotizarPage() {
               nombre: "",
               municipio: "",
               telefono: "",
+              peso: "",
+              preferencia_dureza: "",
               producto_interes: "",
               medida_interes: "",
               comentario: "",
@@ -112,14 +137,49 @@ export default function CotizarPage() {
         <div className="grid gap-5 md:grid-cols-2">
           <div>
             <label className="mb-1 block text-sm font-medium text-texto-suave">
+              Peso de la persona que va a usar el colchón
+            </label>
+            <input
+              type="number"
+              value={formData.peso}
+              onChange={(e) =>
+                setFormData({ ...formData, peso: e.target.value })
+              }
+              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+              placeholder="Ej: 70 kg"
+            />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium text-texto-suave">
+              Preferencia de dureza del colchón
+            </label>
+            <select
+              value={formData.preferencia_dureza}
+              onChange={(e) =>
+                setFormData({ ...formData, preferencia_dureza: e.target.value })
+              }
+              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+            >
+              <option value="">Seleccione...</option>
+              <option value="Blanda">Blanda</option>
+              <option value="Media">Media</option>
+              <option value="Firme">Firme</option>
+              <option value="Muy firme">Muy firme</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-texto-suave">
               Producto de interés *
             </label>
             <select
               required
               value={formData.producto_interes}
-              onChange={(e) =>
-                setFormData({ ...formData, producto_interes: e.target.value })
-              }
+              onChange={(e) => {
+                setFormData({ ...formData, producto_interes: e.target.value, medida_interes: "" });
+              }}
               className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
             >
               <option value="">Seleccione...</option>
@@ -128,6 +188,7 @@ export default function CotizarPage() {
                 <option value="Resortado">Resortado</option>
                 <option value="Super Pillow">Super Pillow</option>
                 <option value="Resortado Pillow">Resortado Pillow</option>
+                <option value="Resortado Penta">Resortado Penta</option>
               </optgroup>
               <optgroup label="Bases">
                 <option value="Base de cama">Base de cama</option>
@@ -144,26 +205,27 @@ export default function CotizarPage() {
             </select>
           </div>
 
-          <div>
-            <label className="mb-1 block text-sm font-medium text-texto-suave">
-              Medida de interés
-            </label>
-            <select
-              value={formData.medida_interes}
-              onChange={(e) =>
-                setFormData({ ...formData, medida_interes: e.target.value })
-              }
-              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
-            >
-              <option value="">Seleccione...</option>
-              <option value="Individual">Individual</option>
-              <option value="Sencillo">Sencillo</option>
-              <option value="Doble">Doble</option>
-              <option value="Queen">Queen</option>
-              <option value="King">King</option>
-              <option value="Única">Única</option>
-            </select>
-          </div>
+          {mostrarMedida && (
+            <div>
+              <label className="mb-1 block text-sm font-medium text-texto-suave">
+                Medida de interés
+              </label>
+              <select
+                value={formData.medida_interes}
+                onChange={(e) =>
+                  setFormData({ ...formData, medida_interes: e.target.value })
+                }
+                className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+              >
+                <option value="">Seleccione...</option>
+                {medidasDisponibles.map((m) => (
+                  <option key={m.id} value={m.medida}>
+                    {m.medida}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
 
         <div>

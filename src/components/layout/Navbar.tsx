@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui";
@@ -14,34 +14,52 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-verde shadow-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-3">
+    <nav
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-verde-oscuro/95 shadow-lg backdrop-blur-sm"
+          : "bg-verde shadow-md"
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:py-4">
+        <Link
+          href="/"
+          className="flex items-center gap-3 transition-opacity hover:opacity-90"
+        >
           <Image
             src="/logo/Logo_Colchones.png"
             alt="Colchones Posada"
-            width={40}
-            height={40}
-            className="h-10 w-10"
+            width={151}
+            height={70}
+            className="h-10 w-auto md:h-12"
+            priority
           />
-          <div className="hidden flex-col sm:flex">
-            <span className="font-heading text-lg font-semibold leading-tight text-white">
+          <div className="flex flex-col">
+            <span className="font-heading text-lg font-bold leading-tight text-white md:text-xl">
               Colchones Posada
             </span>
-            <span className="text-xs text-verde-muy-claro">
-              Fábrica propia · Quindío
+            <span className="text-[11px] text-verde-claro/80 md:text-xs">
+              Fábrica propia · Armenia, Quindío
             </span>
           </div>
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-verde-muy-claro transition-colors hover:text-white"
+              className="text-sm font-medium text-verde-muy-claro/80 transition-colors hover:text-white"
             >
               {link.label}
             </a>
@@ -51,13 +69,14 @@ export function Navbar() {
             size="sm"
             onClick={() => window.open("https://wa.me/573112084159", "_blank")}
           >
-            💬 Cotizar
+            Cotizar
           </Button>
         </div>
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-white md:hidden"
+          className="relative z-50 flex h-10 w-10 items-center justify-center text-white md:hidden"
+          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
         >
           <svg
             className="h-6 w-6"
@@ -84,31 +103,38 @@ export function Navbar() {
         </button>
       </div>
 
-      {isOpen && (
-        <div className="border-t border-verde-claro/30 bg-verde px-4 pb-4 md:hidden">
-          <div className="flex flex-col gap-3 pt-3">
+      <div
+        className={`overflow-hidden transition-all duration-300 md:hidden ${
+          isOpen ? "max-h-80" : "max-h-0"
+        }`}
+      >
+        <div className="border-t border-verde-claro/20 bg-verde-oscuro/90 px-4 pb-5 pt-3 backdrop-blur-sm">
+          <div className="flex flex-col gap-2">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-sm text-verde-muy-claro transition-colors hover:text-white"
+                className="rounded-lg px-4 py-3 text-sm font-medium text-verde-muy-claro/80 transition-colors hover:bg-white/10 hover:text-white"
               >
                 {link.label}
               </a>
             ))}
-            <Button
-              variant="whatsapp"
-              size="sm"
-              onClick={() =>
-                window.open("https://wa.me/573112084159", "_blank")
-              }
-            >
-              💬 Cotizar
-            </Button>
+            <div className="mt-2 px-4 pt-2">
+              <Button
+                variant="whatsapp"
+                size="md"
+                className="w-full"
+                onClick={() =>
+                  window.open("https://wa.me/573112084159", "_blank")
+                }
+              >
+                Cotizar
+              </Button>
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
