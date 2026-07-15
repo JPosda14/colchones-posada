@@ -20,7 +20,7 @@ export function FiltroBar({ activo, onChange }: FiltroBarProps) {
         <button
           key={cat.value}
           onClick={() => onChange(cat.value)}
-          className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+          className={`rounded-full px-5 py-2.5 text-sm font-medium transition-colors min-h-[44px] ${
             activo === cat.value
               ? "bg-verde text-white"
               : "bg-white text-texto-suave hover:bg-verde-muy-claro"

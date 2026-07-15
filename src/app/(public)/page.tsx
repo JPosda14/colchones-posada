@@ -32,7 +32,7 @@ export default function Home() {
               <h1 className="font-heading text-display-md font-extrabold text-white">
                 Más de 15 años fabricando su descanso
               </h1>
-              <p className="mt-6 max-w-lg text-lg leading-relaxed text-verde-muy-claro/90">
+              <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/90">
                 Colchones, bases, almohadas y protectores. Fabricación propia
                 con los mejores materiales del mercado.
               </p>
@@ -130,7 +130,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-4">
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             {[
               {
                 num: "1",
@@ -421,7 +421,7 @@ function CotizacionForm() {
             onChange={(e) =>
               setFormData({ ...formData, nombre: e.target.value })
             }
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
             placeholder="Su nombre"
           />
         </div>
@@ -435,7 +435,7 @@ function CotizacionForm() {
             onChange={(e) =>
               setFormData({ ...formData, municipio: e.target.value })
             }
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
             placeholder="Armenia, Calarcá, ..."
           />
         </div>
@@ -452,7 +452,7 @@ function CotizacionForm() {
           onChange={(e) =>
             setFormData({ ...formData, telefono: e.target.value })
           }
-          className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+          className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
           placeholder="300 000 0000"
         />
       </div>
@@ -468,7 +468,7 @@ function CotizacionForm() {
             onChange={(e) =>
               setFormData({ ...formData, peso: e.target.value })
             }
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
             placeholder="Ej: 70 kg"
           />
         </div>
@@ -481,7 +481,7 @@ function CotizacionForm() {
             onChange={(e) =>
               setFormData({ ...formData, preferencia_dureza: e.target.value })
             }
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
           >
             <option value="">Seleccione...</option>
             <option value="Blanda">Blanda</option>
@@ -503,7 +503,7 @@ function CotizacionForm() {
             onChange={(e) => {
               setFormData({ ...formData, producto_interes: e.target.value, medida_interes: "" });
             }}
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
           >
             <option value="">Seleccione...</option>
             <optgroup label="Colchones">
@@ -538,7 +538,7 @@ function CotizacionForm() {
               onChange={(e) =>
                 setFormData({ ...formData, medida_interes: e.target.value })
               }
-              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
             >
               <option value="">Seleccione...</option>
               {medidasDisponibles.map((m) => (
@@ -561,7 +561,7 @@ function CotizacionForm() {
             setFormData({ ...formData, comentario: e.target.value })
           }
           rows={3}
-          className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+          className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
           placeholder="¿Alguna pregunta o requerimiento especial?"
         />
       </div>

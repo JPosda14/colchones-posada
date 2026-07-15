@@ -43,7 +43,7 @@ export function ProductoCard({ producto }: ProductoCardProps) {
             alt={imagenPrincipal.alt || producto.nombre}
             fill
             className="object-contain p-4 transition-transform group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
           />
         ) : (
           <div className="flex h-full items-center justify-center text-texto-suave">

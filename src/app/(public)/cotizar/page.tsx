@@ -89,76 +89,81 @@ export default function CotizarPage() {
       <form onSubmit={handleSubmit} className="mt-8 space-y-5">
         <div className="grid gap-5 md:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm font-medium text-texto-suave">
+            <label htmlFor="nombre" className="mb-1 block text-sm font-medium text-texto-suave">
               Nombre completo *
             </label>
             <input
+              id="nombre"
               required
               value={formData.nombre}
               onChange={(e) =>
                 setFormData({ ...formData, nombre: e.target.value })
               }
-              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
               placeholder="Su nombre"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-texto-suave">
+            <label htmlFor="municipio" className="mb-1 block text-sm font-medium text-texto-suave">
               Municipio *
             </label>
             <input
+              id="municipio"
               required
               value={formData.municipio}
               onChange={(e) =>
                 setFormData({ ...formData, municipio: e.target.value })
               }
-              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
               placeholder="Armenia, Calarcá, ..."
             />
           </div>
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-texto-suave">
-            Teléfono / WhatsApp *
-          </label>
-          <input
-            required
-            type="tel"
-            value={formData.telefono}
+            <label htmlFor="telefono" className="mb-1 block text-sm font-medium text-texto-suave">
+              Teléfono / WhatsApp *
+            </label>
+            <input
+              id="telefono"
+              required
+              type="tel"
+              value={formData.telefono}
             onChange={(e) =>
               setFormData({ ...formData, telefono: e.target.value })
             }
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
             placeholder="300 000 0000"
           />
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm font-medium text-texto-suave">
+            <label htmlFor="peso" className="mb-1 block text-sm font-medium text-texto-suave">
               Peso de la persona que va a usar el colchón
             </label>
             <input
+              id="peso"
               type="number"
               value={formData.peso}
               onChange={(e) =>
                 setFormData({ ...formData, peso: e.target.value })
               }
-              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
               placeholder="Ej: 70 kg"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-texto-suave">
+            <label htmlFor="dureza" className="mb-1 block text-sm font-medium text-texto-suave">
               Preferencia de dureza del colchón
             </label>
             <select
+              id="dureza"
               value={formData.preferencia_dureza}
               onChange={(e) =>
                 setFormData({ ...formData, preferencia_dureza: e.target.value })
               }
-              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
             >
               <option value="">Seleccione...</option>
               <option value="Blanda">Blanda</option>
@@ -171,16 +176,17 @@ export default function CotizarPage() {
 
         <div className="grid gap-5 md:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm font-medium text-texto-suave">
+            <label htmlFor="producto" className="mb-1 block text-sm font-medium text-texto-suave">
               Producto de interés *
             </label>
             <select
+              id="producto"
               required
               value={formData.producto_interes}
               onChange={(e) => {
                 setFormData({ ...formData, producto_interes: e.target.value, medida_interes: "" });
               }}
-              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
             >
               <option value="">Seleccione...</option>
               <optgroup label="Colchones">
@@ -207,15 +213,16 @@ export default function CotizarPage() {
 
           {mostrarMedida && (
             <div>
-              <label className="mb-1 block text-sm font-medium text-texto-suave">
+              <label htmlFor="medida" className="mb-1 block text-sm font-medium text-texto-suave">
                 Medida de interés
               </label>
               <select
+                id="medida"
                 value={formData.medida_interes}
                 onChange={(e) =>
                   setFormData({ ...formData, medida_interes: e.target.value })
                 }
-                className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+                className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
               >
                 <option value="">Seleccione...</option>
                 {medidasDisponibles.map((m) => (
@@ -229,16 +236,17 @@ export default function CotizarPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-texto-suave">
+          <label htmlFor="comentario" className="mb-1 block text-sm font-medium text-texto-suave">
             Comentario adicional
           </label>
           <textarea
+            id="comentario"
             value={formData.comentario}
             onChange={(e) =>
               setFormData({ ...formData, comentario: e.target.value })
             }
             rows={3}
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde"
+            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
             placeholder="¿Alguna pregunta o requerimiento especial?"
           />
         </div>

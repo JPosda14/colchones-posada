@@ -3,7 +3,7 @@ import { generarLinkWAGenerico } from "@/lib/whatsapp";
 export function Footer() {
   return (
     <footer className="bg-verde text-white">
-      <div className="mx-auto max-w-7xl px-4 py-12">
+      <div className="mx-auto max-w-7xl px-4 py-8 md:py-12">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <h3 className="font-heading text-xl font-semibold">Colchones Posada</h3>
@@ -29,14 +29,14 @@ export function Footer() {
           <div>
             <h4 className="font-heading text-lg font-semibold">Contacto</h4>
             <ul className="mt-2 space-y-1 text-sm text-verde-muy-claro">
-              <li>📱 311 208 4159</li>
-              <li>📱 311 228 8444</li>
+              <li><a href="tel:+573112084159" className="transition-colors hover:text-white">📱 311 208 4159</a></li>
+              <li><a href="tel:+573112288444" className="transition-colors hover:text-white">📱 311 228 8444</a></li>
             </ul>
             <a
               href={generarLinkWAGenerico()}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-whatsapp px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-whatsapp/90"
+              className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-whatsapp px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-whatsapp/90"
             >
               💬 Escríbenos por WhatsApp
             </a>

@@ -51,12 +51,12 @@ export function FichaProducto({ producto }: FichaProductoProps) {
           )}
         </div>
         {producto.imagenes.length > 1 && (
-          <div className="mt-3 flex gap-2 overflow-x-auto">
+          <div className="mt-3 flex gap-2 overflow-x-auto scrollbar-none scroll-smooth snap-x snap-mandatory">
             {producto.imagenes.map((img) => (
               <button
                 key={img.id}
                 onClick={() => setSelectedImage(img)}
-                className={`relative h-16 w-20 flex-shrink-0 overflow-hidden rounded-lg border-2 ${
+                className={`relative h-16 w-20 flex-shrink-0 snap-start overflow-hidden rounded-lg border-2 ${
                   selectedImage.id === img.id
                     ? "border-verde"
                     : "border-transparent"
@@ -67,7 +67,7 @@ export function FichaProducto({ producto }: FichaProductoProps) {
                   alt={img.alt || ""}
                   fill
                   className="object-cover"
-                  sizes="80px"
+                  sizes="160px"
                 />
               </button>
             ))}
@@ -97,7 +97,7 @@ export function FichaProducto({ producto }: FichaProductoProps) {
               <button
                 key={m.id}
                 onClick={() => setSelectedMeasure(m)}
-                className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors min-h-[44px] ${
                   selectedMeasure.id === m.id
                     ? "border-verde bg-verde text-white"
                     : "border-crema-oscura bg-white text-texto hover:border-verde"
@@ -147,7 +147,7 @@ export function FichaProducto({ producto }: FichaProductoProps) {
         )}
 
         {/* Atributos grid */}
-        <div className="grid grid-cols-2 gap-3 rounded-xl bg-crema-oscura p-4">
+        <div className="grid grid-cols-1 gap-3 rounded-xl bg-crema-oscura p-4 sm:grid-cols-2">
           <div>
             <p className="text-xs text-texto-suave">Altura</p>
             <p className="text-sm font-medium text-texto">

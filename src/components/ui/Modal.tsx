@@ -35,10 +35,10 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative z-10 mx-4 max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white p-6 shadow-xl">
+      <div className="relative z-10 mx-4 max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white p-4 shadow-xl md:p-6">
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 text-texto-suave hover:text-texto"
+          className="absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-lg text-texto-suave transition-colors hover:bg-gray-100 hover:text-texto md:right-4 md:top-4"
         >
           ✕
         </button>

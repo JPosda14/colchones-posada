@@ -10,7 +10,7 @@ export function Input({ label, error, className = "", ...props }: InputProps) {
         <label className="text-sm font-medium text-texto-suave">{label}</label>
       )}
       <input
-        className={`rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde ${className}`}
+        className={`rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px] ${className}`}
         {...props}
       />
       {error && <span className="text-xs text-red-500">{error}</span>}

@@ -22,7 +22,7 @@ export function Button({
   };
 
   const sizes: Record<string, string> = {
-    sm: "px-3 py-1.5 text-sm min-h-[36px]",
+    sm: "px-3 py-2 text-sm min-h-[44px]",
     md: "px-5 py-2.5 text-base min-h-[44px]",
     lg: "px-7 py-3 text-lg min-h-[52px]",
   };

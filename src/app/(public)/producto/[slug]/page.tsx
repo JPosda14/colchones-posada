@@ -18,7 +18,7 @@ export default function ProductoPage({ params }: Props) {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12">
+    <div className="mx-auto max-w-7xl px-4 py-8 md:py-12">
       <FichaProducto producto={producto} />
     </div>
   );
