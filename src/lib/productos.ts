@@ -412,7 +412,24 @@ export const productos: Producto[] = [
         disponible: true,
       },
     ],
-    imagenes: [],
+    imagenes: [
+      {
+        id: "i11",
+        producto_id: "5",
+        url: "/images/bases/BaseCamaGris.png",
+        tipo: "frontal",
+        orden: 0,
+        alt: "Base de cama color gris - Colchones Posada",
+      },
+      {
+        id: "i12",
+        producto_id: "5",
+        url: "/images/bases/BaseCamaNegra1.png",
+        tipo: "lateral",
+        orden: 1,
+        alt: "Base de cama color negro - Colchones Posada",
+      },
+    ],
   },
   {
     id: "6",
@@ -636,7 +653,24 @@ export const productos: Producto[] = [
         disponible: true,
       },
     ],
-    imagenes: [],
+    imagenes: [
+      {
+        id: "i13",
+        producto_id: "10",
+        url: "/images/protectores/ProtectorBlanco.png",
+        tipo: "frontal",
+        orden: 0,
+        alt: "Protector de colchón color blanco - Colchones Posada",
+      },
+      {
+        id: "i14",
+        producto_id: "10",
+        url: "/images/protectores/ProtectorGris.png",
+        tipo: "ambiente",
+        orden: 1,
+        alt: "Protector de colchón color gris - Colchones Posada",
+      },
+    ],
   },
 ];
 
