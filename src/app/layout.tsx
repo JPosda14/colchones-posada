@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Colchones Posada | Fábrica de colchones en Armenia, Quindío",
   description:
     "Más de 15 años fabricando colchones, bases y almohadas. Domicilio gratis en Armenia, Calarcá y Génova. Pague con Bold, Addi o Sistecredito.",
+  icons: {
+    icon: {
+      url: "/logo/Logo_Colchones.png",
+      type: "image/png",
+    },
+  },
 };
 
 export default function RootLayout({

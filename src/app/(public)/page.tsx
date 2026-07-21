@@ -249,8 +249,8 @@ export default function Home() {
           <div className="grid items-center gap-12 md:grid-cols-2">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-verde-muy-claro">
               <Image
-                src="/images/taller/ResortadoPillowInt.jpeg"
-                alt="Taller de fabricación Colchones Posada"
+                src="/images/colchones/ResortadoExtFront.png"
+                alt="Colchón Colchones Posada"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
