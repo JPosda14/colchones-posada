@@ -441,7 +441,7 @@ export const productos: Producto[] = [
         id: "ib3",
         producto_id: "4",
         url: "/images/bases/BaseCamaNegraconGris.png",
-        tipo: "combinada",
+        tipo: "lateral",
         orden: 2,
         alt: "Base Cama Negra con Gris",
       },
