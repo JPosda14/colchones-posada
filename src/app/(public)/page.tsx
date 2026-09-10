@@ -15,77 +15,76 @@ export default function Home() {
       ? productos.filter((p) => p.activo)
       : productos.filter((p) => p.categoria === filtro && p.activo);
 
-  const superPillow = productos.find((p) => p.slug === "super-pillow")!;
-
   return (
     <>
       {/* #inicio - Hero */}
-      <section id="inicio" className="relative overflow-hidden bg-gradient-to-br from-verde-oscuro via-verde to-verde py-24 md:py-32">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08)_0%,transparent_60%)]" />
-        <div className="absolute left-0 top-0 h-full w-1/2 bg-[radial-gradient(ellipse_at_bottom_left,rgba(82,183,136,0.2)_0%,transparent_50%)]" />
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="grid items-center gap-12 md:grid-cols-2">
-            <div className="text-white">
-              <p className="mb-3 text-sm font-medium tracking-wider text-verde-claro/80 uppercase">
-                Fábrica propia · Armenia, Quindío
-              </p>
-              <h1 className="font-heading text-display-md font-extrabold text-white">
-                Más de 15 años fabricando su descanso
-              </h1>
-              <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/90">
-                Colchones, bases, almohadas y protectores. Fabricación propia
-                con los mejores materiales del mercado.
-              </p>
-              <div className="mt-10 flex flex-wrap gap-4">
-                <Button
-                  variant="whatsapp"
-                  size="lg"
-                  onClick={() =>
-                    window.open("https://wa.me/573112084159", "_blank")
-                  }
-                >
-                  Cotizar ahora
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() =>
-                    document
-                      .getElementById("catalogo")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="border-white/70 text-white/90 hover:border-white hover:bg-white hover:text-verde"
-                >
-                  Ver catálogo
-                </Button>
-              </div>
-              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-verde-muy-claro/80">
-                <span className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-verde-claro/20 text-xs">✓</span>
-                  Domicilio gratis
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-verde-claro/20 text-xs">✓</span>
-                  5 años de garantía
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-verde-claro/20 text-xs">✓</span>
-                  Medidas especiales
-                </span>
-              </div>
-            </div>
-            <div className="relative aspect-square md:aspect-[4/3]">
-              {superPillow && superPillow.imagenes[0] && (
-                <Image
-                  src={superPillow.imagenes[0].url}
-                  alt="Colchón Super Pillow - Producto estrella"
-                  fill
-                  className="object-contain drop-shadow-2xl"
-                  priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              )}
-            </div>
+      <section id="inicio" className="relative min-h-screen w-full overflow-hidden">
+        <Image
+          src="/images/hero/MenuFoto.jpeg"
+          alt="Habitación con cama y colchón Colchones Posada"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          priority
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.10) 100%)",
+          }}
+        />
+
+        <div className="absolute bottom-16 left-8 md:bottom-24 md:left-16">
+          <p className="mb-3 text-xs font-light uppercase tracking-widest text-white/70">
+            Colchones Posada
+          </p>
+          <h1
+            className="mb-8 text-4xl font-normal italic leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Más de 15 años
+            <br />
+            fabricando
+            <br />
+            su descanso
+          </h1>
+          <button
+            onClick={() =>
+              document
+                .getElementById("catalogo")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="rounded-none border border-white px-8 py-3 text-sm uppercase tracking-widest text-white transition-colors duration-300 hover:bg-white hover:text-black"
+          >
+            Ver catálogo →
+          </button>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 grid grid-cols-3 bg-black/40 px-8 py-4 backdrop-blur-sm md:px-16">
+          <div className="border-r border-white/20 pr-4 md:pr-8">
+            <p className="mb-1 text-[10px] uppercase tracking-widest text-white/50">
+              Fabricación
+            </p>
+            <p className="text-sm font-light text-white/90">
+              Hecha con nuestras propias manos
+            </p>
+          </div>
+          <div className="border-r border-white/20 px-4 md:px-8">
+            <p className="mb-1 text-[10px] uppercase tracking-widest text-white/50">
+              Garantía
+            </p>
+            <p className="text-sm font-light text-white/90">
+              5 años en todos los colchones
+            </p>
+          </div>
+          <div className="pl-4 md:pl-8">
+            <p className="mb-1 text-[10px] uppercase tracking-widest text-white/50">
+              Entrega
+            </p>
+            <p className="text-sm font-light text-white/90">
+              Domicilio gratis en Armenia y Calarcá
+            </p>
           </div>
         </div>
       </section>
