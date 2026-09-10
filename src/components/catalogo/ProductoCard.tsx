@@ -32,19 +32,20 @@ export function ProductoCard({ producto }: ProductoCardProps) {
   };
 
   return (
-    <Link
-      href={`/producto/${producto.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md"
-    >
-      <div className="relative aspect-[4/3] overflow-hidden bg-crema-oscura">
-        {imagenPrincipal ? (
-          <Image
-            src={imagenPrincipal.url}
-            alt={imagenPrincipal.alt || producto.nombre}
-            fill
-            className="object-contain p-4 transition-transform group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-          />
+    <article className="h-full">
+      <Link
+        href={`/producto/${producto.slug}`}
+        className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md"
+      >
+        <div className="relative aspect-[4/3] overflow-hidden bg-crema-oscura">
+          {imagenPrincipal ? (
+            <Image
+              src={imagenPrincipal.url}
+              alt={imagenPrincipal.alt || producto.nombre}
+              fill
+              className="object-contain p-4 transition-transform group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
         ) : (
           <div className="flex h-full items-center justify-center text-texto-suave">
             Sin imagen
@@ -82,7 +83,8 @@ export function ProductoCard({ producto }: ProductoCardProps) {
         <span className="mt-1 text-sm font-semibold text-verde transition-colors group-hover:text-verde-oscuro">
           Ver detalles →
         </span>
-      </div>
-    </Link>
+        </div>
+      </Link>
+    </article>
   );
 }

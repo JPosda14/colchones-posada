@@ -1,20 +1,10 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui";
-import { ProductoCard, FiltroBar } from "@/components/catalogo";
+import { Catalogo } from "@/components/catalogo";
+import { ZonasSection } from "@/components/public/ZonasSection";
+import { CotizacionForm } from "@/components/cotizacion/CotizacionForm";
 import { productos } from "@/lib/productos";
-import type { ProductoMedida } from "@/types";
 
 export default function Home() {
-  const [filtro, setFiltro] = useState("todos");
-
-  const productosFiltrados =
-    filtro === "todos"
-      ? productos.filter((p) => p.activo)
-      : productos.filter((p) => p.categoria === filtro && p.activo);
-
   return (
     <>
       {/* #inicio - Hero */}
@@ -35,7 +25,7 @@ export default function Home() {
           }}
         />
 
-        <div className="absolute bottom-16 left-8 md:bottom-24 md:left-16">
+        <div className="absolute bottom-24 left-8 md:bottom-24 md:left-16">
           <p className="mb-3 text-xs font-light uppercase tracking-widest text-white/70">
             Colchones Posada
           </p>
@@ -49,40 +39,36 @@ export default function Home() {
             <br />
             su descanso
           </h1>
-          <button
-            onClick={() =>
-              document
-                .getElementById("catalogo")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="rounded-none border border-white px-8 py-3 text-sm uppercase tracking-widest text-white transition-colors duration-300 hover:bg-white hover:text-black"
+          <a
+            href="#catalogo"
+            className="inline-flex rounded-none border border-white px-8 py-3 text-sm uppercase tracking-widest text-white transition-colors duration-300 hover:bg-white hover:text-black"
           >
             Ver catálogo →
-          </button>
+          </a>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 grid grid-cols-3 bg-black/40 px-8 py-4 backdrop-blur-sm md:px-16">
-          <div className="border-r border-white/20 pr-4 md:pr-8">
+        <div className="absolute bottom-0 left-0 right-0 grid grid-cols-3 bg-black/40 px-6 py-4 backdrop-blur-sm md:px-16">
+          <div className="border-r border-white/20 pr-3 md:pr-8">
             <p className="mb-1 text-[10px] uppercase tracking-widest text-white/50">
               Fabricación
             </p>
-            <p className="text-sm font-light text-white/90">
+            <p className="text-xs font-light text-white/90 sm:text-sm">
               Hecha con nuestras propias manos
             </p>
           </div>
-          <div className="border-r border-white/20 px-4 md:px-8">
+          <div className="border-r border-white/20 px-3 md:px-8">
             <p className="mb-1 text-[10px] uppercase tracking-widest text-white/50">
               Garantía
             </p>
-            <p className="text-sm font-light text-white/90">
+            <p className="text-xs font-light text-white/90 sm:text-sm">
               5 años en todos los colchones
             </p>
           </div>
-          <div className="pl-4 md:pl-8">
+          <div className="pl-3 md:pl-8">
             <p className="mb-1 text-[10px] uppercase tracking-widest text-white/50">
               Entrega
             </p>
-            <p className="text-sm font-light text-white/90">
+            <p className="text-xs font-light text-white/90 sm:text-sm">
               Domicilio gratis en Armenia y Calarcá
             </p>
           </div>
@@ -99,21 +85,7 @@ export default function Home() {
             Fabricamos cada producto con materiales de la más alta calidad.
           </p>
 
-          <div className="mt-8">
-            <FiltroBar activo={filtro} onChange={setFiltro} />
-          </div>
-
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {productosFiltrados.map((p) => (
-              <ProductoCard key={p.id} producto={p} />
-            ))}
-          </div>
-
-          {productosFiltrados.length === 0 && (
-            <p className="py-12 text-center text-texto-suave">
-              No hay productos en esta categoría.
-            </p>
-          )}
+          <Catalogo productos={productos} />
         </div>
       </section>
 
@@ -129,7 +101,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 num: "1",
@@ -183,62 +155,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                municipio: "Armenia",
-                entrega: "Entrega el mismo día",
-                badge: "Domicilio gratis",
-              },
-              {
-                municipio: "Calarcá",
-                entrega: "Entrega el mismo día",
-                badge: "Domicilio gratis",
-              },
-              {
-                municipio: "Génova",
-                entrega: "Consultar disponibilidad",
-                badge: "Domicilio gratis",
-              },
-              {
-                municipio: "Otros municipios",
-                entrega: "Consultar",
-                badge: null,
-              },
-            ].map((zona) => (
-              <div
-                key={zona.municipio}
-                className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-lg">
-                  📍
-                </div>
-                <h3 className="mt-4 font-heading text-xl font-bold text-white">
-                  {zona.municipio}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-verde-muy-claro/75">
-                  {zona.entrega}
-                </p>
-                {zona.badge && (
-                  <span className="mt-4 inline-block rounded-full bg-verde-claro/20 px-3 py-1 text-xs font-semibold tracking-wide text-verde-claro uppercase">
-                    {zona.badge}
-                  </span>
-                )}
-                {zona.municipio === "Otros municipios" && (
-                  <Button
-                    variant="whatsapp"
-                    size="sm"
-                    onClick={() =>
-                      window.open("https://wa.me/573112084159", "_blank")
-                    }
-                    className="mt-4"
-                  >
-                    Consultar
-                  </Button>
-                )}
-              </div>
-            ))}
-          </div>
+          <ZonasSection />
         </div>
       </section>
 
@@ -249,7 +166,7 @@ export default function Home() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-verde-muy-claro">
               <Image
                 src="/images/colchones/ResortadoExtFront.png"
-                alt="Colchón Colchones Posada"
+                alt="Taller de fabricación de colchones - Colchones Posada Armenia Quindío"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -332,242 +249,5 @@ export default function Home() {
         </div>
       </section>
     </>
-  );
-}
-
-const PRODUCTOS_SIN_MEDIDA = [
-  "Almohada Sencilla",
-  "Almohada Normal",
-  "Almohada Acolchada",
-  "Almohada Memory Foam",
-];
-
-function CotizacionForm() {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    municipio: "",
-    telefono: "",
-    peso: "",
-    preferencia_dureza: "",
-    producto_interes: "",
-    medida_interes: "",
-    comentario: "",
-  });
-  const [enviado, setEnviado] = useState(false);
-
-  const productoActual = productos.find((p) => p.nombre === formData.producto_interes);
-  const medidasDisponibles: ProductoMedida[] = productoActual
-    ? productoActual.medidas.filter((m) => m.disponible)
-    : [];
-
-  const mostrarMedida = formData.producto_interes && !PRODUCTOS_SIN_MEDIDA.includes(formData.producto_interes);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    let mensaje = `Hola, soy ${formData.nombre}. Vivo en ${formData.municipio}. Me interesa cotizar ${formData.producto_interes}`;
-    if (formData.medida_interes) mensaje += ` en medida ${formData.medida_interes}`;
-    if (formData.peso) mensaje += `. Peso: ${formData.peso} kg`;
-    if (formData.preferencia_dureza) mensaje += `. Preferencia: ${formData.preferencia_dureza}`;
-    if (formData.comentario) mensaje += `. Comentario: ${formData.comentario}`;
-    mensaje += `. Mi teléfono es ${formData.telefono}.`;
-    window.open(
-      `https://wa.me/573112084159?text=${encodeURIComponent(mensaje)}`,
-      "_blank"
-    );
-    setEnviado(true);
-  };
-
-  if (enviado) {
-    return (
-      <div className="mt-8 rounded-2xl bg-white p-8 text-center">
-        <p className="font-heading text-2xl font-bold text-verde">¡Gracias!</p>
-        <p className="mt-2 text-texto-suave">
-          Su solicitud fue enviada. Pronto nos pondremos en contacto.
-        </p>
-        <Button
-          variant="primary"
-          className="mt-4"
-          onClick={() => {
-            setEnviado(false);
-            setFormData({
-              nombre: "",
-              municipio: "",
-              telefono: "",
-              peso: "",
-              preferencia_dureza: "",
-              producto_interes: "",
-              medida_interes: "",
-              comentario: "",
-            });
-          }}
-        >
-          Enviar otra cotización
-        </Button>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-      <div className="grid gap-5 md:grid-cols-2">
-        <div>
-          <label className="mb-1 block text-sm font-medium text-texto-suave">
-            Nombre completo *
-          </label>
-          <input
-            required
-            value={formData.nombre}
-            onChange={(e) =>
-              setFormData({ ...formData, nombre: e.target.value })
-            }
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
-            placeholder="Su nombre"
-          />
-        </div>
-        <div>
-          <label className="mb-1 block text-sm font-medium text-texto-suave">
-            Municipio *
-          </label>
-          <input
-            required
-            value={formData.municipio}
-            onChange={(e) =>
-              setFormData({ ...formData, municipio: e.target.value })
-            }
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
-            placeholder="Armenia, Calarcá, ..."
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="mb-1 block text-sm font-medium text-texto-suave">
-          Teléfono / WhatsApp *
-        </label>
-        <input
-          required
-          type="tel"
-          value={formData.telefono}
-          onChange={(e) =>
-            setFormData({ ...formData, telefono: e.target.value })
-          }
-          className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
-          placeholder="300 000 0000"
-        />
-      </div>
-
-      <div className="grid gap-5 md:grid-cols-2">
-        <div>
-          <label className="mb-1 block text-sm font-medium text-texto-suave">
-            Peso de la persona que va a usar el colchón
-          </label>
-          <input
-            type="number"
-            value={formData.peso}
-            onChange={(e) =>
-              setFormData({ ...formData, peso: e.target.value })
-            }
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
-            placeholder="Ej: 70 kg"
-          />
-        </div>
-        <div>
-          <label className="mb-1 block text-sm font-medium text-texto-suave">
-            Preferencia de dureza del colchón
-          </label>
-          <select
-            value={formData.preferencia_dureza}
-            onChange={(e) =>
-              setFormData({ ...formData, preferencia_dureza: e.target.value })
-            }
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
-          >
-            <option value="">Seleccione...</option>
-            <option value="Blanda">Blanda</option>
-            <option value="Media">Media</option>
-            <option value="Firme">Firme</option>
-            <option value="Muy firme">Muy firme</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="grid gap-5 md:grid-cols-2">
-        <div>
-          <label className="mb-1 block text-sm font-medium text-texto-suave">
-            Producto de interés *
-          </label>
-          <select
-            required
-            value={formData.producto_interes}
-            onChange={(e) => {
-              setFormData({ ...formData, producto_interes: e.target.value, medida_interes: "" });
-            }}
-            className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
-          >
-            <option value="">Seleccione...</option>
-            <optgroup label="Colchones">
-              <option value="Ortopédico Cassata">Ortopédico Cassata</option>
-              <option value="Resortado">Resortado</option>
-              <option value="Super Pillow">Super Pillow</option>
-              <option value="Resortado Pillow">Resortado Pillow</option>
-              <option value="Resortado Penta">Resortado Penta</option>
-            </optgroup>
-            <optgroup label="Bases">
-              <option value="Base de cama">Base de cama</option>
-            </optgroup>
-            <optgroup label="Almohadas">
-              <option value="Almohada Sencilla">Almohada Sencilla</option>
-              <option value="Almohada Normal">Almohada Normal</option>
-              <option value="Almohada Acolchada">Almohada Acolchada</option>
-              <option value="Almohada Memory Foam">Almohada Memory Foam</option>
-            </optgroup>
-            <optgroup label="Protectores">
-              <option value="Protector de colchón">Protector de colchón</option>
-            </optgroup>
-          </select>
-        </div>
-
-        {mostrarMedida && (
-          <div>
-            <label className="mb-1 block text-sm font-medium text-texto-suave">
-              Medida de interés
-            </label>
-            <select
-              value={formData.medida_interes}
-              onChange={(e) =>
-                setFormData({ ...formData, medida_interes: e.target.value })
-              }
-              className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
-            >
-              <option value="">Seleccione...</option>
-              {medidasDisponibles.map((m) => (
-                <option key={m.id} value={m.medida}>
-                  {m.medida}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-      </div>
-
-      <div>
-        <label className="mb-1 block text-sm font-medium text-texto-suave">
-          Comentario adicional
-        </label>
-        <textarea
-          value={formData.comentario}
-          onChange={(e) =>
-            setFormData({ ...formData, comentario: e.target.value })
-          }
-          rows={3}
-          className="w-full rounded-lg border border-crema-oscura bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-verde focus:outline-none focus:ring-1 focus:ring-verde min-h-[44px]"
-          placeholder="¿Alguna pregunta o requerimiento especial?"
-        />
-      </div>
-
-      <Button type="submit" variant="primary" size="lg">
-        Enviar solicitud 📨
-      </Button>
-    </form>
   );
 }

@@ -1,15 +1,43 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Colchones Posada | Fábrica de colchones en Armenia, Quindío",
+  metadataBase: new URL("https://www.colchonesposada.lat"),
+  title: {
+    default: "Colchones Posada | Fábrica de colchones en Armenia, Quindío",
+    template: "%s | Colchones Posada",
+  },
   description:
-    "Más de 15 años fabricando colchones, bases y almohadas. Domicilio gratis en Armenia, Calarcá y Génova. Pague con Bold, Addi o Sistecredito.",
+    "Más de 15 años fabricando colchones, bases y almohadas en Armenia, Quindío. Domicilio gratis en Armenia, Calarcá y Génova. Pague con Bold, Addi o Sistecredito.",
   icons: {
-    icon: {
-      url: "/logo/Logo_Colchones.png",
-      type: "image/png",
-    },
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    url: "https://www.colchonesposada.lat",
+    siteName: "Colchones Posada",
+    title: "Colchones Posada | Fábrica de colchones en Armenia, Quindío",
+    description:
+      "Más de 15 años fabricando colchones, bases y almohadas en Armenia, Quindío. Domicilio gratis en Armenia, Calarcá y Génova. Pague con Bold, Addi o Sistecredito.",
+    images: [
+      {
+        url: "/og/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Colchones Posada - Fábrica de colchones en Armenia, Quindío",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Colchones Posada | Fábrica de colchones en Armenia, Quindío",
+    description:
+      "Más de 15 años fabricando colchones, bases y almohadas en Armenia, Quindío. Domicilio gratis en Armenia, Calarcá y Génova. Pague con Bold, Addi o Sistecredito.",
+    images: ["/og/og-image.png"],
   },
 };
 
@@ -42,6 +70,9 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-crema text-texto antialiased">{children}</body>
+      {process.env.NEXT_PUBLIC_GA_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      )}
     </html>
   );
 }

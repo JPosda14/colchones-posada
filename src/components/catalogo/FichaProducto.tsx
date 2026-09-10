@@ -55,7 +55,9 @@ export function FichaProducto({ producto }: FichaProductoProps) {
             {producto.imagenes.map((img) => (
               <button
                 key={img.id}
+                type="button"
                 onClick={() => setSelectedImage(img)}
+                aria-label={`Ver imagen ${img.alt || producto.nombre} ${img.id}`}
                 className={`relative h-16 w-20 flex-shrink-0 snap-start overflow-hidden rounded-lg border-2 ${
                   selectedImage.id === img.id
                     ? "border-verde"
@@ -90,13 +92,17 @@ export function FichaProducto({ producto }: FichaProductoProps) {
         <p className="text-texto-suave">{producto.descripcion}</p>
 
         {/* Selector de medidas */}
-        <div>
-          <p className="mb-2 text-sm font-medium text-texto-suave">Medida</p>
+        <fieldset>
+          <legend className="mb-2 text-sm font-medium text-texto-suave">
+            Medida
+          </legend>
           <div className="flex flex-wrap gap-2">
             {producto.medidas.map((m) => (
               <button
                 key={m.id}
+                type="button"
                 onClick={() => setSelectedMeasure(m)}
+                aria-pressed={selectedMeasure.id === m.id}
                 className={`rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors min-h-[44px] ${
                   selectedMeasure.id === m.id
                     ? "border-verde bg-verde text-white"
@@ -112,7 +118,7 @@ export function FichaProducto({ producto }: FichaProductoProps) {
               </button>
             ))}
           </div>
-        </div>
+        </fieldset>
 
         {/* Precio */}
         <div>

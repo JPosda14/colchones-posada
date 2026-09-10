@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "@next/third-parties": "^16.3.4",
     "@supabase/supabase-js": "^2.110.0",
     "next": "14.2.35",
     "react": "^18",
@@ -21,6 +22,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "critters": "^0.0.23",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "postcss": "^8",
