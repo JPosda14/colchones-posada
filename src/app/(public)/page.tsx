@@ -2,9 +2,13 @@ import Image from "next/image";
 import { Catalogo } from "@/components/catalogo";
 import { ZonasSection } from "@/components/public/ZonasSection";
 import { CotizacionForm } from "@/components/cotizacion/CotizacionForm";
-import { productos } from "@/lib/productos";
+import { getProductosPublicos } from "@/lib/productos";
 
-export default function Home() {
+export const revalidate = 300;
+
+export default async function Home() {
+  const productos = await getProductosPublicos();
+
   return (
     <>
       {/* #inicio - Hero */}
@@ -245,7 +249,7 @@ export default function Home() {
             </p>
           </div>
 
-          <CotizacionForm />
+          <CotizacionForm productos={productos} />
         </div>
       </section>
     </>

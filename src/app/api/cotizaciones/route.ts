@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { cotizacionSchema } from "@/lib/validations";
 
 export async function POST(request: Request) {
@@ -13,15 +14,37 @@ export async function POST(request: Request) {
       );
     }
 
-    const { nombre, municipio, telefono, producto_interes } = parsed.data;
+    const {
+      nombre,
+      municipio,
+      telefono,
+      producto_interes,
+      medida_interes,
+      comentario,
+    } = parsed.data;
 
-    // TODO: Insertar en Supabase cuando esté configurado
-    // const { data, error } = await supabase.from("cotizaciones").insert({...});
+    const admin = getSupabaseAdmin();
+    const { error } = await admin.from("cotizaciones").insert({
+      nombre,
+      municipio,
+      telefono,
+      producto_interes,
+      medida_interes: medida_interes || null,
+      comentario: comentario || null,
+      canal: "web",
+      estado: "nueva",
+    });
+
+    if (error) {
+      return NextResponse.json(
+        { error: "No se pudo guardar la cotización" },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
       message: `Cotización recibida para ${producto_interes} en ${municipio}`,
-      quien: { nombre, telefono },
     });
   } catch {
     return NextResponse.json(
@@ -29,9 +52,4 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
-}
-
-export async function GET() {
-  // TODO: Obtener de Supabase cuando esté configurado
-  return NextResponse.json({ data: [] });
 }

@@ -1,18 +1,16 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { FichaProducto } from "@/components/catalogo/FichaProducto";
-import { productos } from "@/lib/productos";
+import { getProductoPublico } from "@/lib/productos";
 
 interface Props {
   params: { slug: string };
 }
 
-export function generateStaticParams() {
-  return productos.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }: Props): Metadata {
-  const producto = productos.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const producto = await getProductoPublico(params.slug);
 
   return {
     title: producto ? producto.nombre : "Producto",
@@ -38,8 +36,8 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function ProductoPage({ params }: Props) {
-  const producto = productos.find((p) => p.slug === params.slug);
+export default async function ProductoPage({ params }: Props) {
+  const producto = await getProductoPublico(params.slug);
 
   if (!producto) {
     notFound();

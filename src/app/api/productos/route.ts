@@ -1,6 +1,14 @@
 import { NextResponse } from "next/server";
-import { productos } from "@/lib/productos";
+import { getProductosPublicos } from "@/lib/productos";
 
 export async function GET() {
-  return NextResponse.json({ data: productos });
+  try {
+    const data = await getProductosPublicos();
+    return NextResponse.json({ data });
+  } catch {
+    return NextResponse.json(
+      { error: "No se pudo cargar el catálogo" },
+      { status: 500 }
+    );
+  }
 }

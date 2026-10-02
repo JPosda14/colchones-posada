@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
-import { productos } from "@/lib/productos";
-
-export const dynamic = "force-static";
+import { getProductosPublicos } from "@/lib/productos";
 
 const BASE_URL = "https://www.colchonesposada.lat";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 300;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const productos = await getProductosPublicos();
+
   const rutasProductos: MetadataRoute.Sitemap = productos.map((p) => ({
     url: `${BASE_URL}/producto/${p.slug}`,
     lastModified: new Date(),

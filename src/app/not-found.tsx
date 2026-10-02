@@ -7,6 +7,7 @@ import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 export const metadata: Metadata = {
   title: "Página no encontrada",
   description: "El contenido que buscas no está disponible o fue movido.",
+  robots: { index: false, follow: false },
 };
 
 export default function NotFound() {

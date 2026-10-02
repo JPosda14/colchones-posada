@@ -4,15 +4,21 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui";
-import { productos } from "@/lib/productos";
 import { cotizacionSchema, CotizacionFormData } from "@/lib/validations";
-import type { ProductoMedida } from "@/types";
+import type { Producto, ProductoMedida } from "@/types";
 
 const PRODUCTOS_SIN_MEDIDA = [
   "Almohada Sencilla",
   "Almohada Normal",
   "Almohada Acolchada",
   "Almohada Memory Foam",
+];
+
+const GRUPOS: Array<{ label: string; categoria: Producto["categoria"] }> = [
+  { label: "Colchones", categoria: "colchon" },
+  { label: "Bases", categoria: "base" },
+  { label: "Almohadas", categoria: "almohada" },
+  { label: "Protectores", categoria: "protector" },
 ];
 
 const INPUT_CLASS =
@@ -34,7 +40,7 @@ function builderMensajeWhatsApp(d: CotizacionFormData) {
   return mensaje;
 }
 
-export function CotizacionForm() {
+export function CotizacionForm({ productos }: { productos: Producto[] }) {
   const [enviando, setEnviando] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [errorEnvio, setErrorEnvio] = useState(false);
@@ -248,25 +254,21 @@ export function CotizacionForm() {
             }
           >
             <option value="">Seleccione...</option>
-            <optgroup label="Colchones">
-              <option value="Ortopédico Cassata">Ortopédico Cassata</option>
-              <option value="Resortado">Resortado</option>
-              <option value="Super Pillow">Super Pillow</option>
-              <option value="Resortado Pillow">Resortado Pillow</option>
-              <option value="Resortado Penta">Resortado Penta</option>
-            </optgroup>
-            <optgroup label="Bases">
-              <option value="Base de cama">Base de cama</option>
-            </optgroup>
-            <optgroup label="Almohadas">
-              <option value="Almohada Sencilla">Almohada Sencilla</option>
-              <option value="Almohada Normal">Almohada Normal</option>
-              <option value="Almohada Acolchada">Almohada Acolchada</option>
-              <option value="Almohada Memory Foam">Almohada Memory Foam</option>
-            </optgroup>
-            <optgroup label="Protectores">
-              <option value="Protector de colchón">Protector de colchón</option>
-            </optgroup>
+            {GRUPOS.map((grupo) => {
+              const delGrupo = productos.filter(
+                (p) => p.categoria === grupo.categoria
+              );
+              if (delGrupo.length === 0) return null;
+              return (
+                <optgroup key={grupo.categoria} label={grupo.label}>
+                  {delGrupo.map((p) => (
+                    <option key={p.id} value={p.nombre}>
+                      {p.nombre}
+                    </option>
+                  ))}
+                </optgroup>
+              );
+            })}
           </select>
           {errors.producto_interes && (
             <span

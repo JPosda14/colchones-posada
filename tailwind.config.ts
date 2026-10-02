@@ -28,6 +28,7 @@ const config: Config = {
       fontFamily: {
         heading: ["Alegreya", "serif"],
         body: ["Alegreya Sans", "sans-serif"],
+        admin: ["DM Sans", "sans-serif"],
       },
     },
   },
