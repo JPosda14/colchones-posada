@@ -53,8 +53,8 @@ export async function updateSession(request: NextRequest) {
 
   if (!isEmailAdmin(user.email)) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
-    url.search = "";
+    url.pathname = "/admin/login";
+    url.search = "error=no-autorizado";
     return NextResponse.redirect(url);
   }
 

@@ -6,7 +6,14 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function AdminLoginPage() {
+export default async function AdminLoginPage({
+  searchParams,
+}: {
+  searchParams: { error?: string };
+}) {
+  const error =
+    searchParams.error === "no-autorizado" ? "no-autorizado" : null;
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-crema px-4 py-12">
       <div className="w-full max-w-md">
@@ -21,7 +28,7 @@ export default function AdminLoginPage() {
             Ingresa con tu correo autorizado para administrar el catálogo.
           </p>
           <div className="mt-6">
-            <LoginForm />
+            <LoginForm error={error} />
           </div>
         </div>
       </div>

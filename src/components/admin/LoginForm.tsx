@@ -13,7 +13,11 @@ const INPUT_CLASS =
 const ERROR_INPUT_CLASS =
   "w-full rounded-lg border border-red-400 bg-white px-4 py-2.5 text-texto placeholder:text-texto-suave focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-400 min-h-[44px]";
 
-export function LoginForm() {
+export function LoginForm({
+  error = null,
+}: {
+  error?: "no-autorizado" | null;
+}) {
   const router = useRouter();
   const [enviando, setEnviando] = useState(false);
   const [errorLogin, setErrorLogin] = useState<string | null>(null);
@@ -59,6 +63,20 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      {error === "no-autorizado" && (
+        <div
+          role="alert"
+          aria-live="polite"
+          className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-800"
+        >
+          Tu correo no está autorizado para el panel. {" "}
+          <a href="/admin/login" className="underline">
+            Ingresa con el correo autorizado
+          </a>{" "}
+          para continuar.
+        </div>
+      )}
+
       {errorLogin && (
         <div
           role="alert"

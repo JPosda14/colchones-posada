@@ -22,7 +22,7 @@ export default async function AdminLayout({
   } = await supabase.auth.getUser();
 
   if (!user) redirect("/admin/login");
-  if (!isEmailAdmin(user.email)) redirect("/");
+  if (!isEmailAdmin(user.email)) redirect("/admin/login?error=no-autorizado");
 
   return (
     <div className="min-h-screen bg-crema font-admin">
