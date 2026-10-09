@@ -95,7 +95,7 @@ export function CotizacionForm({ productos }: { productos: Producto[] }) {
 
       const mensaje = builderMensajeWhatsApp(data);
       window.open(
-        `https://wa.me/573112084159?text=${encodeURIComponent(mensaje)}`,
+        `https://wa.me/573112288444?text=${encodeURIComponent(mensaje)}`,
         "_blank"
       );
       setEnviado(true);

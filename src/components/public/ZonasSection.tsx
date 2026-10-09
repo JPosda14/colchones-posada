@@ -52,7 +52,7 @@ export function ZonasSection() {
               variant="whatsapp"
               size="sm"
               onClick={() =>
-                window.open("https://wa.me/573112084159", "_blank")
+                window.open("https://wa.me/573112288444", "_blank")
               }
               className="mt-4"
             >

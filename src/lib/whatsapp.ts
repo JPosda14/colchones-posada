@@ -1,4 +1,4 @@
-const NUMERO = "573112084159";
+const NUMERO = "573112288444";
 
 export function generarLinkWA(producto: string, medida: string): string {
   const mensaje = encodeURIComponent(
