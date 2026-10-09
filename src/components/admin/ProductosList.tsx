@@ -215,6 +215,7 @@ export function ProductosList({ productos }: { productos: AdminProductoRow[] }) 
                     <div className="flex gap-2">
                       <Link
                         href={`/admin/productos/${p.slug}/editar`}
+                        prefetch={false}
                         className="rounded-lg border border-crema-oscura px-3 py-1.5 text-xs text-verde hover:border-verde"
                       >
                         Editar
@@ -269,6 +270,7 @@ export function ProductosList({ productos }: { productos: AdminProductoRow[] }) 
                 <div className="mt-3 flex gap-2">
                   <Link
                     href={`/admin/productos/${p.slug}/editar`}
+                    prefetch={false}
                     className="flex-1 rounded-lg border border-crema-oscura px-3 py-2 text-center text-xs text-verde hover:border-verde"
                   >
                     Editar

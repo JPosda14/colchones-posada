@@ -170,6 +170,14 @@ export function ProductoForm({ producto }: Props) {
 
   useEffect(() => reset(producto ? defaults(producto) : defaults(null)), [producto, reset]);
 
+  // Al entrar al formulario de edición, volver a pedir los datos al servidor:
+  // evita que la caché del router muestre una versión vieja tras guardar.
+  useEffect(() => {
+    if (!producto) return;
+    router.refresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (!slugAutoRef.current) return;
     if (!slugify(nombre ?? "")) return;
